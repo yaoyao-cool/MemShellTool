@@ -10,11 +10,17 @@
 - 支持生成agent马
 - 应对特殊环境下的payload长度限制，支持通过加载器分离加载
 - 隐藏内存马class中的函数，对抗人工反编译分析
+- 添加gui和反编译功能，可反编译显示注入器和webshell类
 - 完善中......
 
 # 0x01
 
-use
+gui：
+```
+java -jar MemShellTool.jar -gui
+```
+
+命令行：
 ```
 usage: java -jar MemShellTool.jar [-ct <arg>] [-d] [-h] [-hn <arg>] [-icn
        <arg>] [-it <arg>] [-k <arg>] [-op <arg>] [-ot <arg>] [-p <arg>]
@@ -70,7 +76,8 @@ Available OutTpye:
 [RAW, BASE64, BCEL, JAVASCRIPT, SPEL, EL]
 ```
 
-example：spel表达式 tomcat filter 哥斯拉内存马
+example：
+spel表达式 tomcat filter 哥斯拉内存马
 ```
 java -jar MemShellTool-v1.0.jar -d -ct TOMCAT -sname Helper -st FILTER -u /404 -slt BEHINDER -ot SPEL
 
@@ -106,3 +113,18 @@ java -jar MemShellTool-v1.0.jar -d -ct TOMCAT -sname Helper -st WEBSOCKET -u /ws
 连接shell
 
 ![img2](img/ws_shell.png)
+
+# 0x2
+
+新增fastjson内存马，基于fastjson组件实现内存马功能。
+
+目前支持cmdshell和冰蝎4.0
+
+实现原理参考：https://oh3r.vip/2025/02/05/fastjson%E5%86%85%E5%AD%98%E9%A9%AC/
+
+![img3](img/fastjsonshell.png)
+
+# 0x3
+反编译显示注入器和webshell类
+
+![img4](img/decompile.png)
